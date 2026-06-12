@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What are your opening hours?",
+    "answer": "We are open Monday to Friday 08:00 to 18:00 and Saturday 09:00 to 13:00. We are closed on Sundays and public holidays."
+  },
+  {
+    "question": "What areas do you cover?",
+    "answer": "We cover Example Town and everywhere within roughly 40 km of it. Not sure if that includes you? Send us your postcode and we will confirm."
+  },
+  {
+    "question": "How do I get a quote?",
+    "answer": "Use the contact form on our website or email hello@example.com with a short description of the job. We reply with a fixed quote within one working day."
+  },
+  {
+    "question": "What payment methods do you accept?",
+    "answer": "We accept all major debit and credit cards, bank transfer and Apple Pay. Payment is due within 14 days of the invoice date."
+  },
+  {
+    "question": "Do you offer emergency call-outs?",
+    "answer": "Yes. Emergency call-outs are available 24/7 and carry a fixed surcharge on top of our standard rates. Call the emergency line listed on your booking confirmation."
+  },
+  {
+    "question": "How quickly can you schedule a visit?",
+    "answer": "Routine visits are usually scheduled within three working days. You will get a confirmation email with the date and an arrival window."
+  },
+  {
+    "question": "What is your cancellation policy?",
+    "answer": "You can cancel or reschedule free of charge up to 24 hours before the appointment. Later cancellations are charged at 50% of the booked rate."
+  },
+  {
+    "question": "Are your engineers certified?",
+    "answer": "Yes. Every engineer is fully certified, insured and DBS-checked, and we re-certify annually."
+  },
+  {
+    "question": "Do you provide a warranty on your work?",
+    "answer": "All work comes with a 12-month parts and labour warranty. If anything we fixed fails within that period, we return and put it right at no cost."
+  },
+  {
+    "question": "How can I track my appointment?",
+    "answer": "After booking you receive a confirmation email with a tracking link, plus a reminder the day before and a message when the engineer is on the way."
+  }
+]

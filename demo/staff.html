@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trinops Comms Bot — Staff view</title>
+  <link rel="stylesheet" href="/staff.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Conversation history</h1>
+      <p class="subtitle">Read-only staff view — every reply is tagged with how it was produced</p>
+    </div>
+    <a class="back" href="/">Back to demo site</a>
+  </header>
+
+  <div id="filters">
+    <button class="filter active" data-filter="all">All</button>
+    <button class="filter" data-filter="escalated">Escalated</button>
+  </div>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Started</th>
+          <th>Session</th>
+          <th>Messages</th>
+          <th>Status</th>
+          <th>Last message</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+
+    <section id="transcript" hidden>
+      <h2 id="transcript-title"></h2>
+      <div id="transcript-messages"></div>
+    </section>
+  </main>
+
+  <script src="/staff.js"></script>
+</body>
+</html>

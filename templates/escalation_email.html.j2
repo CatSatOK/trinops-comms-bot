@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<body style="font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; max-width: 640px; margin: 0 auto;">
+  <h2 style="color: #0d9488;">Chat escalation — {{ company_name }}</h2>
+  <p>
+    A visitor asked to speak to someone. Session
+    <strong>{{ session_id[:8] }}</strong>, started
+    {{ started_at.strftime("%Y-%m-%d %H:%M UTC") }}.
+    Full transcript below — please follow up.
+  </p>
+  <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+    <thead>
+      <tr>
+        <th style="text-align: left; padding: 8px; border-bottom: 2px solid #e2e8f0;">Time</th>
+        <th style="text-align: left; padding: 8px; border-bottom: 2px solid #e2e8f0;">Who</th>
+        <th style="text-align: left; padding: 8px; border-bottom: 2px solid #e2e8f0;">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for message in messages %}
+      <tr>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; white-space: nowrap; color: #64748b;">
+          {{ message.created_at.strftime("%H:%M:%S") }}
+        </td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; font-weight: 600;
+                   color: {{ '#0d9488' if message.role == 'USER' else '#475569' }};">
+          {{ "Visitor" if message.role == "USER" else "Bot" }}
+        </td>
+        <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">{{ message.content }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p style="color: #64748b; font-size: 12px;">Sent automatically by the {{ company_name }} chat bot.</p>
+</body>
+</html>

@@ -1,0 +1,65 @@
+/* Demo client site — intentionally light and plain so the embedded widget
+   stands out as the product. */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1e293b;
+  background: #f8fafc;
+  line-height: 1.6;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+.logo { font-weight: 750; font-size: 1.05rem; letter-spacing: 0.02em; }
+.nav-links a { color: #0d9488; text-decoration: none; margin-left: 18px; font-size: 0.92rem; }
+.nav-links a:hover { text-decoration: underline; }
+
+.hero { padding: 64px 32px 40px; max-width: 760px; margin: 0 auto; }
+.hero h1 { font-size: 2rem; margin-bottom: 14px; }
+.hero p { color: #475569; }
+
+main { max-width: 960px; margin: 0 auto; padding: 0 32px 64px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 22px;
+}
+.card h2 { font-size: 1.05rem; margin-bottom: 8px; }
+.card p { color: #475569; font-size: 0.92rem; }
+.card a { color: #0d9488; }
+
+.faq { padding-top: 40px; max-width: 760px; }
+.faq h1 { margin-bottom: 10px; }
+.faq-note { color: #64748b; font-size: 0.9rem; margin-bottom: 28px; }
+.faq h2 { font-size: 1.15rem; margin: 28px 0 12px; }
+.faq h3 { font-size: 1rem; margin: 20px 0 6px; }
+.faq p { color: #334155; font-size: 0.95rem; }
+.faq code { background: #e2e8f0; padding: 1px 5px; border-radius: 4px; font-size: 0.85em; }
+
+details {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+details summary { cursor: pointer; font-weight: 600; font-size: 0.97rem; }
+details p { margin-top: 8px; }
+
+footer {
+  padding: 24px 32px 80px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  text-align: center;
+}

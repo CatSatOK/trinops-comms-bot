@@ -1,0 +1,68 @@
+[
+  {
+    "session_id": "seed-client-x-0001",
+    "escalated": false,
+    "messages": [
+      {
+        "role": "USER",
+        "content": "What are your opening hours?"
+      },
+      {
+        "role": "ASSISTANT",
+        "content": "We are open Monday to Friday 08:00 to 18:00 and Saturday 09:00 to 13:00. We are closed on Sundays and public holidays.",
+        "source": "FAQ",
+        "matched_question": "What are your opening hours?"
+      },
+      {
+        "role": "USER",
+        "content": "and how do I get a quote"
+      },
+      {
+        "role": "ASSISTANT",
+        "content": "Use the contact form on our website or email hello@example.com with a short description of the job. We reply with a fixed quote within one working day.",
+        "source": "FAQ",
+        "matched_question": "How do I get a quote?"
+      }
+    ]
+  },
+  {
+    "session_id": "seed-client-y-0002",
+    "escalated": true,
+    "messages": [
+      {
+        "role": "USER",
+        "content": "do you cover Example Town?"
+      },
+      {
+        "role": "ASSISTANT",
+        "content": "We cover Example Town and everywhere within roughly 40 km of it. Not sure if that includes you? Send us your postcode and we will confirm.",
+        "source": "FAQ",
+        "matched_question": "What areas do you cover?"
+      },
+      {
+        "role": "USER",
+        "content": "I have a complaint about my last visit, I want to speak to someone"
+      },
+      {
+        "role": "ASSISTANT",
+        "content": "No problem — I've passed this conversation to the team. Someone will pick it up and get back to you shortly.",
+        "source": "HANDOFF"
+      }
+    ]
+  },
+  {
+    "session_id": "seed-client-z-0003",
+    "escalated": false,
+    "messages": [
+      {
+        "role": "USER",
+        "content": "Can I bring my dog to the showroom?"
+      },
+      {
+        "role": "ASSISTANT",
+        "content": "I'm not sure about that one, sorry. Try rephrasing your question — or say \"speak to someone\" and I'll pass you over to the team.",
+        "source": "FALLBACK"
+      }
+    ]
+  }
+]
