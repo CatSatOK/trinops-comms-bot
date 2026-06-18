@@ -2,12 +2,13 @@
 
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from api.routes.admin import router as admin_router
 from api.routes.chat import router as chat_router
 from api.routes.conversations import router as conversations_router
+from api.auth import require_admin
 from comms_bot.config import get_settings
 from comms_bot.database import init_db
 from comms_bot.logging_conf import setup_logging
@@ -29,7 +30,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Trinops Comms Bot", lifespan=lifespan)
 app.include_router(chat_router)
-app.include_router(conversations_router)
-app.include_router(admin_router)
+app.include_router(conversations_router, dependencies=[Depends(require_admin)])
+app.include_router(admin_router, dependencies=[Depends(require_admin)])
 app.mount("/widget", StaticFiles(directory="widget"), name="widget")
 app.mount("/", StaticFiles(directory="demo", html=True), name="demo")
