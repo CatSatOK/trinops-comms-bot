@@ -1,5 +1,12 @@
 """Security response headers are stamped on app routes and skip CSP on docs."""
 
+from api.security import docs_urls
+
+
+def test_docs_enabled_only_in_demo_mode():
+    assert docs_urls(True)["openapi_url"] == "/openapi.json"
+    assert docs_urls(False) == {"docs_url": None, "redoc_url": None, "openapi_url": None}
+
 
 def test_hardening_headers_on_app_route(client):
     r = client.get("/health")

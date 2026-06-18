@@ -9,7 +9,7 @@ from api.routes.admin import router as admin_router
 from api.routes.chat import router as chat_router
 from api.routes.conversations import router as conversations_router
 from api.auth import require_admin
-from api.security import SecurityHeadersMiddleware
+from api.security import SecurityHeadersMiddleware, docs_urls
 from comms_bot.config import get_settings
 
 # Strict, nonce-free policy. connect-src 'self' covers the same-origin chat
@@ -38,7 +38,13 @@ async def lifespan(app: FastAPI):
     stop_scheduler()
 
 
-app = FastAPI(title="Trinops Comms Bot", lifespan=lifespan)
+# Interactive docs only in demo mode (see docs_urls). FastAPI never leaks
+# tracebacks unless debug=True, which is never set, so production 500s stay generic.
+app = FastAPI(
+    title="Trinops Comms Bot",
+    lifespan=lifespan,
+    **docs_urls(get_settings().demo_mode),
+)
 app.add_middleware(SecurityHeadersMiddleware, csp=CSP)
 
 
