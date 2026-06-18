@@ -18,6 +18,19 @@ class Settings(BaseSettings):
     # Protects staff/admin endpoints when demo_mode is false (sent as X-API-Key).
     admin_api_key: str = ""
 
+    # Public chat WebSocket guards. The chat endpoint is unauthenticated by
+    # design (any visitor can talk to the bot), so it gets its own limits:
+    #  - rate limit per caller IP (messages per minute); 0 disables it. This is
+    #    the main guard on Anthropic spend, since the LLM fallback runs per message.
+    #  - hard cap on a single message length (chars); longer messages are
+    #    truncated server-side regardless of the widget's own maxlength.
+    #  - Origin allowlist: when set, the browser Origin header must match one of
+    #    these or the connection is refused. Empty (the demo default) allows any
+    #    origin so the embeddable widget keeps working anywhere.
+    chat_rate_limit_per_minute: int = 30
+    max_message_chars: int = 1000
+    allowed_origins: list[str] = []
+
     database_url: str = "sqlite:///./data/comms.db"
 
     anthropic_api_key: str = ""
