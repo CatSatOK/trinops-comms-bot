@@ -9,7 +9,17 @@ from api.routes.admin import router as admin_router
 from api.routes.chat import router as chat_router
 from api.routes.conversations import router as conversations_router
 from api.auth import require_admin
+from api.security import SecurityHeadersMiddleware
 from comms_bot.config import get_settings
+
+# Strict, nonce-free policy. connect-src 'self' covers the same-origin chat
+# WebSocket. The embeddable widget runs on the host page, whose own CSP governs
+# there; this policy protects our own demo + staff pages.
+CSP = (
+    "default-src 'self'; script-src 'self'; style-src 'self'; "
+    "img-src 'self' data:; connect-src 'self'; base-uri 'self'; "
+    "form-action 'self'; frame-ancestors 'none'; object-src 'none'"
+)
 from comms_bot.database import init_db
 from comms_bot.logging_conf import setup_logging
 from comms_bot.scheduler import start_scheduler, stop_scheduler
@@ -29,6 +39,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Trinops Comms Bot", lifespan=lifespan)
+app.add_middleware(SecurityHeadersMiddleware, csp=CSP)
+
+
+@app.get("/health", tags=["meta"])
+def health() -> dict[str, str]:
+    return {"status": "ok"}
+
+
 app.include_router(chat_router)
 app.include_router(conversations_router, dependencies=[Depends(require_admin)])
 app.include_router(admin_router, dependencies=[Depends(require_admin)])

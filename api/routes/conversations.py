@@ -1,6 +1,6 @@
-"""Read-only conversation history for staff."""
+"""Conversation history for staff, plus GDPR erasure."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Response
 from sqlalchemy import select
 
 from comms_bot.database import session_scope
@@ -27,6 +27,22 @@ def list_conversations() -> list[dict]:
             }
             for c in conversations
         ]
+
+
+@router.delete("/{conversation_id}", status_code=204)
+def erase_conversation(conversation_id: int) -> Response:
+    """GDPR right to erasure: delete a conversation and every message in it.
+
+    The messages relationship cascades with delete-orphan, so the full
+    transcript (which can contain personal data the visitor typed) is removed,
+    not just the parent row.
+    """
+    with session_scope() as session:
+        conversation = session.get(Conversation, conversation_id)
+        if conversation is None:
+            raise HTTPException(status_code=404, detail="conversation not found")
+        session.delete(conversation)
+    return Response(status_code=204)
 
 
 @router.get("/{conversation_id}")
